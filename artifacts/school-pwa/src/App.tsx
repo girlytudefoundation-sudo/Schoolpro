@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { Layout } from "./components/Layout";
 
 import Login from "./pages/login";
@@ -22,19 +23,17 @@ import Analytics from "./pages/analytics";
 import Settings from "./pages/settings";
 import Notifications from "./pages/notifications";
 import Fees from "./pages/fees";
+import Promotion from "./pages/promotion";
+import Timetable from "./pages/timetable";
+import ExamTimetable from "./pages/exam-timetable";
 
 const queryClient = new QueryClient();
 
-function ProtectedRoute({ component: Component, ...rest }: any) {
+function ProtectedRoute({ component: Component }: { component: React.ComponentType }) {
   const { user, isLoading } = useAuth();
   if (isLoading) return <div className="h-screen flex items-center justify-center">Loading...</div>;
   if (!user) return <Redirect to="/login" />;
-  
-  return (
-    <Layout>
-      <Component />
-    </Layout>
-  );
+  return <Layout><Component /></Layout>;
 }
 
 function Router() {
@@ -57,6 +56,9 @@ function Router() {
       <Route path="/settings" component={() => <ProtectedRoute component={Settings} />} />
       <Route path="/notifications" component={() => <ProtectedRoute component={Notifications} />} />
       <Route path="/fees" component={() => <ProtectedRoute component={Fees} />} />
+      <Route path="/promotion" component={() => <ProtectedRoute component={Promotion} />} />
+      <Route path="/timetable" component={() => <ProtectedRoute component={Timetable} />} />
+      <Route path="/exam-timetable" component={() => <ProtectedRoute component={ExamTimetable} />} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -65,14 +67,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-            <Router />
-          </WouterRouter>
-          <Toaster />
-        </TooltipProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+              <Router />
+            </WouterRouter>
+            <Toaster />
+          </TooltipProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
