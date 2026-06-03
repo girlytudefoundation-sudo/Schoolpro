@@ -1,6 +1,6 @@
 [build]
-  command   = "pnpm --filter @workspace/school-pwa run build"
-  publish   = "artifacts/school-pwa/dist/public"
+  command = "pnpm install && pnpm --filter @workspace/school-pwa run build"
+  publish = "artifacts/school-pwa/dist/public"
 
 [build.environment]
   NODE_VERSION = "20"
