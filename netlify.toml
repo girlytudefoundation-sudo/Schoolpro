@@ -1,0 +1,13 @@
+[build]
+  command   = "pnpm --filter @workspace/school-pwa run build"
+  publish   = "artifacts/school-pwa/dist/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NODE_ENV     = "production"
+  BASE_PATH    = "/"
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
