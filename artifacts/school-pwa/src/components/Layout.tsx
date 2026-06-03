@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "../contexts/AuthContext";
-import { LogOut, Users, BookOpen, User, Layers, GraduationCap, BarChart, Settings, Home, FileText, Calendar, LayoutGrid, BadgeCheck } from "lucide-react";
+import { LogOut, Users, BookOpen, User, Layers, GraduationCap, BarChart, Settings, Home, FileText, Calendar, LayoutGrid, BadgeCheck, Bell } from "lucide-react";
 import { Button } from "./ui/button";
 
 const navItems = [
@@ -17,6 +17,7 @@ const navItems = [
   { path: "/id-cards", label: "ID Cards", icon: User },
   { path: "/certificates", label: "Certificates", icon: BadgeCheck },
   { path: "/analytics", label: "Analytics", icon: BarChart },
+  { path: "/notifications", label: "Notifications", icon: Bell },
   { path: "/settings", label: "Settings", icon: Settings },
 ];
 

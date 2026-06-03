@@ -20,6 +20,7 @@ import IdCards from "./pages/id-cards";
 import Certificates from "./pages/certificates";
 import Analytics from "./pages/analytics";
 import Settings from "./pages/settings";
+import Notifications from "./pages/notifications";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ function Router() {
       <Route path="/certificates" component={() => <ProtectedRoute component={Certificates} />} />
       <Route path="/analytics" component={() => <ProtectedRoute component={Analytics} />} />
       <Route path="/settings" component={() => <ProtectedRoute component={Settings} />} />
+      <Route path="/notifications" component={() => <ProtectedRoute component={Notifications} />} />
       <Route component={NotFound} />
     </Switch>
   );
