@@ -21,6 +21,7 @@ import Certificates from "./pages/certificates";
 import Analytics from "./pages/analytics";
 import Settings from "./pages/settings";
 import Notifications from "./pages/notifications";
+import Fees from "./pages/fees";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ function Router() {
       <Route path="/analytics" component={() => <ProtectedRoute component={Analytics} />} />
       <Route path="/settings" component={() => <ProtectedRoute component={Settings} />} />
       <Route path="/notifications" component={() => <ProtectedRoute component={Notifications} />} />
+      <Route path="/fees" component={() => <ProtectedRoute component={Fees} />} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -40,10 +40,10 @@ export default function Settings() {
     try {
       const db = await initDb();
       const exportObj: any = {};
-      const storeNames = Array.from(db.objectStoreNames) as (keyof SchoolDB)[];
+      const storeNames = Array.from(db.objectStoreNames);
       
       for (const storeName of storeNames) {
-        exportObj[storeName] = await db.getAll(storeName);
+        exportObj[storeName] = await (db as any).getAll(storeName);
       }
       
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
@@ -68,9 +68,9 @@ export default function Settings() {
       try {
         const importedData = JSON.parse(event.target?.result as string);
         const db = await initDb();
-        const storeNames = Array.from(db.objectStoreNames) as (keyof SchoolDB)[];
+        const storeNames = Array.from(db.objectStoreNames);
         
-        const tx = db.transaction(storeNames, "readwrite");
+        const tx = (db as any).transaction(storeNames, "readwrite");
         
         for (const storeName of storeNames) {
           if (importedData[storeName]) {
@@ -95,10 +95,10 @@ export default function Settings() {
     if (!confirm("Are you sure you want to clear ALL data? This cannot be undone.")) return;
     try {
       const db = await initDb();
-      const storeNames = Array.from(db.objectStoreNames) as (keyof SchoolDB)[];
-      const tx = db.transaction(storeNames, "readwrite");
+      const storeNames = Array.from(db.objectStoreNames);
+      const tx = (db as any).transaction(storeNames, "readwrite");
       for (const storeName of storeNames) {
-         await tx.objectStore(storeName).clear();
+        await tx.objectStore(storeName).clear();
       }
       await tx.done;
       toast({ title: "All data cleared." });
