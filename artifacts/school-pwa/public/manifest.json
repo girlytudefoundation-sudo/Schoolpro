@@ -1,0 +1,15 @@
+{
+  "name": "SchoolPro",
+  "short_name": "SchoolPro",
+  "theme_color": "#731f32",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
